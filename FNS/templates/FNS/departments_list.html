@@ -1,0 +1,33 @@
+{% extends 'FNS/base.html' %}
+
+{% block title %}Кафедри{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Кафедри факультету</h1>
+    
+    <div class="departments-grid">
+        {% for department in departments %}
+        <div class="department-card">
+            <h2>
+                <a href="{% url 'FNS:department_detail' department.id %}">
+                    {{ department.name }}
+                </a>
+            </h2>
+            <p><strong>Завідувач:</strong> {{ department.head }}</p>
+            
+            {% if department.programs.all %}
+            <div class="programs-list">
+                <h3>Спеціальності:</h3>
+                <ul>
+                    {% for program in department.programs.all %}
+                    <li>{{ program.name }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

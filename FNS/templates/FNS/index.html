@@ -1,0 +1,16 @@
+{% extends 'FNS/base.html' %}
+
+{% block title %}{{ homepage.title }}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>{{ homepage.title }}</h1>
+    <div class="description">
+        <p>{{ homepage.description }}</p>
+    </div>
+    <div class="contacts">
+        <h2>Контакти</h2>
+        <p>{{ homepage.contacts|linebreaks }}</p>
+    </div>
+</div>
+{% endblock %}

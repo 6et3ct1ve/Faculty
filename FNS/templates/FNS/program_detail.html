@@ -1,0 +1,39 @@
+{% extends 'FNS/base.html' %}
+
+{% block title %}{{ program.name }}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>{{ program.name }}</h1>
+    <p class="program-code">Код спеціальності: {{ program.code }}</p>
+    
+    <div class="program-info">
+        <h2>Опис</h2>
+        <p>{{ program.description }}</p>
+        
+        <h2>Дисципліни</h2>
+        <ul class="disciplines-list">
+            {% for discipline in program.disciplines_list %}
+            <li>{{ discipline }}</li>
+            {% endfor %}
+        </ul>
+        
+        <div class="coordinator">
+            <h2>Координатор набору</h2>
+            <p>{{ program.coordinator_name }}</p>
+            <p>Контакт: {{ program.coordinator_contact }}</p>
+        </div>
+        
+        <div class="department-info">
+            <h2>Випускова кафедра</h2>
+            <p>
+                <a href="{% url 'FNS:department_detail' program.department.id %}">
+                    {{ program.department.name }}
+                </a>
+            </p>
+        </div>
+    </div>
+    
+    <a href="{% url 'FNS:programs_list' %}" class="back-link">← Назад до списку</a>
+</div>
+{% endblock %}

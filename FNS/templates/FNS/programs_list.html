@@ -1,0 +1,30 @@
+{% extends 'FNS/base.html' %}
+
+{% block title %}Спеціальності{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Наші спеціальності</h1>
+    
+    <div class="programs-grid">
+        {% for program in programs %}
+        <div class="program-card">
+            <h2>
+                <a href="{% url 'FNS:program_detail' program.id %}">
+                    {{ program.name }}
+                </a>
+            </h2>
+            <p class="program-code">Код: {{ program.code }}</p>
+            <p class="program-description">
+                {{ program.description|truncatewords:50 }}
+            </p>
+            <div class="coordinator">
+                <p><strong>Координатор набору:</strong></p>
+                <p>{{ program.coordinator_name }}</p>
+                <p>{{ program.coordinator_contact }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
